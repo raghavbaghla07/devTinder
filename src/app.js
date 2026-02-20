@@ -1,13 +1,18 @@
+console.log("RUNNING APP.JS FILE");
 const express = require("express");
 const app = express();
+
+app.get("/user", (req, res) => {
+    res.send({ username: "Raghav Baghla" })
+})
+app.post("/user", (req, res) => {
+    res.send("Data successfully saved to database")
+})
+app.delete("/user", (req, res) => {
+    res.send("Deleted successfully")
+})
 app.use("/test", (req, res) => {
     res.send("hello from server")
-})
-app.use("/RU", (req, res) => {
-    res.send("SU")
-})
-app.use("/SU", (req, res) => {
-    res.send("RU")
 })
 
 app.listen(3000, () => {
