@@ -2,15 +2,18 @@ console.log("RUNNING APP.JS FILE");
 const express = require("express");
 const app = express();
 
-app.get("/user", (req, res) => {
-    res.send({ username: "Raghav Baghla" })
-})
-app.post("/user", (req, res) => {
-    res.send("Data successfully saved to database")
-})
-app.delete("/user", (req, res) => {
-    res.send("Deleted successfully")
-})
+app.use("/user",
+    (req, res, next) => {
+        console.log("Entered handler 1");
+        next();
+        res.send("Response 1")
+    },
+    (req, res) => {
+        console.log("Entered handler 2");
+        res.send("Response 2")
+    }
+)
+
 app.use("/test", (req, res) => {
     res.send("hello from server")
 })
